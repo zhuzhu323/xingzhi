@@ -14,6 +14,7 @@ import com.zjf.kaw.util.GlobalConsts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class PopularNewsFragment extends Fragment {
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
 
-	View view = inflater.inflate(R.layout.sport_fragment, null);
+	View view = inflater.inflate(R.layout.popular_fragment, null);
 	setViews(view);
 	model.findAllNewsList(new Callback() {
 		
@@ -48,6 +49,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 //≥ı ºªØview
 	private void setViews(View view){
 		newsListView=(ListView) view.findViewById(R.id.lv_news);
+		Log.i("222222", newsListView.toString());
 	}
 	private void setLisenters() {
 		newsListView.setOnItemClickListener(new OnItemClickListener() {

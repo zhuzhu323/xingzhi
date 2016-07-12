@@ -51,11 +51,12 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080018;
-        public static final int ib_newsinfo_back=0x7f080014;
-        public static final int ib_newsinfo_more=0x7f080016;
+        public static final int ib_newsinfo_back=0x7f080013;
+        public static final int ib_newsinfo_more=0x7f080015;
         public static final int ivMainShow=0x7f080000;
         public static final int ivNewsPic=0x7f08000e;
-        public static final int lv_news=0x7f080012;
+        public static final int ll_news_fragment_contatiner=0x7f08000d;
+        public static final int lv_news=0x7f080017;
         public static final int rb_new_title_first=0x7f080009;
         public static final int rb_new_title_fouth=0x7f08000c;
         public static final int rb_new_title_second=0x7f08000a;
@@ -66,15 +67,14 @@ public final class R {
         public static final int rb_tab_menu_video=0x7f080005;
         public static final int rg_news_title=0x7f080008;
         public static final int rg_tab_menu=0x7f080003;
-        public static final int rl_newsinfo_title=0x7f080013;
+        public static final int rl_newsinfo_title=0x7f080012;
         public static final int tvNewsTitle=0x7f08000f;
         public static final int tvSource=0x7f080010;
         public static final int tvUpdateTime=0x7f080011;
         public static final int tv_menu_bottom=0x7f080002;
-        public static final int tv_newsinfo_channel=0x7f080015;
+        public static final int tv_newsinfo_channel=0x7f080014;
         public static final int vp_pagers=0x7f080001;
-        public static final int vp_pagers1=0x7f08000d;
-        public static final int wv_newsinfo_content=0x7f080017;
+        public static final int wv_newsinfo_content=0x7f080016;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -85,11 +85,10 @@ public final class R {
         public static final int fragment_news=0x7f030005;
         public static final int fragment_video=0x7f030006;
         public static final int news_item=0x7f030007;
-        public static final int news_list=0x7f030008;
-        public static final int newsinfo_activity=0x7f030009;
-        public static final int popular_fragment=0x7f03000a;
-        public static final int sport_fragment=0x7f03000b;
-        public static final int tech_fragment=0x7f03000c;
+        public static final int newsinfo_activity=0x7f030008;
+        public static final int popular_fragment=0x7f030009;
+        public static final int sport_fragment=0x7f03000a;
+        public static final int tech_fragment=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f070000;

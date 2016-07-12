@@ -59,12 +59,13 @@
             android:textSize="14sp" />
     </RadioGroup>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_pagers1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/tv_menu_bottom"
-        android:layout_below="@+id/rg_news_title" />
+  <LinearLayout 
+      android:id="@+id/ll_news_fragment_contatiner"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_below="@+id/rg_news_title"
+      ></LinearLayout>
 
 
 
