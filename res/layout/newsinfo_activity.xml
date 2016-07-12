@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rl_newsinfo_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_bar_top" >
+
+        <ImageButton
+            android:id="@+id/ib_newsinfo_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/arrow_back"
+            android:onClick="doClick" />
+        <TextView 
+            android:id="@+id/tv_newsinfo_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新闻频道"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+        <ImageButton 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_newsinfo_more"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/gengduo"
+            />
+    </RelativeLayout>
+    <WebView 
+        android:id="@+id/wv_newsinfo_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_newsinfo_title"
+        android:layout_margin="5dp"/>
+
+
+</RelativeLayout>

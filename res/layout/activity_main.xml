@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_show"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText" >
+
+    <ImageView
+        android:id="@+id/ivMainShow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_show" 
+        android:scaleType="centerCrop"/>
+
+</RelativeLayout>
