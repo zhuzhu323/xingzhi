@@ -34,12 +34,8 @@ public class NewsAdapter extends BaseAdapter {
 		super();
 		this.news = news;
 		this.inflater = LayoutInflater.from(context);
-		this.setContext(context);
-		
+		this.setContext(context);		
 	}
-
-	
-
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -61,7 +57,6 @@ public class NewsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
-
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.news_item, null);
 			holder = new ViewHolder();
@@ -77,10 +72,10 @@ public class NewsAdapter extends BaseAdapter {
 		}
 		// 给holder中控件赋值
 		News n = getItem(position);
-		long time=Long.parseLong(n.getTime());
+//		long time=Long.parseLong(n.getTime());
+		long time = System.currentTimeMillis();
 		Date date=new Date(time);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		sdf.format(date);
 		holder.tvTitle.setText(n.getTitle());
 		holder.tvPdate.setText(sdf.format(date));
 		holder.tvAuthor.setText(n.getAuthor());

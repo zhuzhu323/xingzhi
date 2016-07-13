@@ -22,7 +22,7 @@
             android:checked="true"
             android:gravity="center"
             android:text="热点"
-            android:textColor="@drawable/tab_menu_text_color_selector"
+            android:textColor="@drawable/tab_newstitle_text_color_selector"
             android:textSize="14sp" />
 
         <RadioButton
@@ -33,7 +33,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="体育"
-            android:textColor="@drawable/tab_menu_text_color_selector"
+            android:textColor="@drawable/tab_newstitle_text_color_selector"
             android:textSize="14sp" />
 
         <RadioButton
@@ -44,7 +44,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="科技"
-            android:textColor="@drawable/tab_menu_text_color_selector"
+            android:textColor="@drawable/tab_newstitle_text_color_selector"
             android:textSize="14sp" />
 
         <RadioButton
@@ -55,18 +55,15 @@
             android:button="@null"
             android:gravity="center"
             android:text="汽车"
-            android:textColor="@drawable/tab_menu_text_color_selector"
+            android:textColor="@drawable/tab_newstitle_text_color_selector"
             android:textSize="14sp" />
     </RadioGroup>
 
-  <LinearLayout 
-      android:id="@+id/ll_news_fragment_contatiner"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:layout_below="@+id/rg_news_title"
-      ></LinearLayout>
-
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_news_pagers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rg_news_title" />
+   
 
 </RelativeLayout>

@@ -39,6 +39,10 @@ public class GlobalConsts {
 	public static final String NEWS_DIGITAL_Url = "digital";
 
 	public static final int RESPONSE_CODE_SUCCESS = 1001;
+	public static final String POPULAR_PARAMETER = "id=popular&page=1";
+	public static final String SPORTS_PARAMETER = "id=sports&page=1";
+	public static final String TECH_PARAMETER = "id=tech&page=1";
+	public static final String AUTO_PARAMETER = "id=auto&page=1";
 	
 	
 }

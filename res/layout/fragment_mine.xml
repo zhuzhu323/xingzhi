@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ff0000" >
+   
+ <ImageView 
+     android:id="@+id/iv_mine_top"
+     android:layout_width="match_parent"
+     android:layout_height="200dp"/>
 
 <TextView 
     android:text="我的"

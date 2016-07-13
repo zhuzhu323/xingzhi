@@ -18,5 +18,10 @@ public class MineFragment extends Fragment {
 		
 		return view;
 	}
+
+	public void slide(float v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

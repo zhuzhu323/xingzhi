@@ -3,15 +3,23 @@ package com.zjf.kaw.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xutils.x;
+import org.xutils.view.annotation.ViewInject;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -25,183 +33,127 @@ public class NewsFragment extends Fragment {
 
 	// private ListView listView;
 	NewsModel model;
+	@ViewInject(R.id.rg_news_title)
 	private RadioGroup radioGroupNews;
-	private NewsAdapter adapter;
-	private List<News> news;
+	@ViewInject(R.id.vp_news_pagers)
 	private ViewPager viewPager;
-	private ArrayList<Fragment> fragments;
+	private ArrayList<Fragment> fragments1;
+	@ViewInject(R.id.rb_new_title_first)
 	private RadioButton rbTitle1;
+	@ViewInject(R.id.rb_new_title_second)
 	private RadioButton rbTitle2;
+	@ViewInject(R.id.rb_new_title_third)
 	private RadioButton rbTitle3;
+	@ViewInject(R.id.rb_new_title_fouth)
 	private RadioButton rbTitle4;
-	private PopularNewsFragment popularFragment;
-	private SpotsNewsFragment spotFragment;
-	private TechNewsFragment techFragment;
-	private AutoNewsFragment autoFragment;
-	// private MPagerAdapter1 mPagerAdapter;
-	ArrayList<Fragment> fragmentList = new ArrayList();
-	ArrayList<RadioButton> btnList = new ArrayList();
-	// 当前显示第一个Fragment
-	int currentFragment = 0;
-	int clickBtn;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		View view = inflater.inflate(R.layout.fragment_news, null);
-		//显示第一个fragment
-		popularFragment=new PopularNewsFragment();
-		FragmentManager manager=getActivity().getSupportFragmentManager();
-		//Transaction事务
-		FragmentTransaction transaction=manager.beginTransaction();
-		//将popularfragment显示在linearlayout中
-		transaction.add(R.id.ll_news_fragment_contatiner, popularFragment);
-		//提交、执行add、show
-		transaction.commit();
-		
-		SpotsNewsFragment spotsFragment=new SpotsNewsFragment();
-		TechNewsFragment techFragment=new TechNewsFragment();
-		AutoNewsFragment autoFragment=new AutoNewsFragment();
-		fragmentList.add(spotFragment);
-		fragmentList.add(techFragment);
-		fragmentList.add(autoFragment);
-		
-		rbTitle1 = (RadioButton) view.findViewById(R.id.rb_new_title_first);
-		rbTitle2 = (RadioButton) view.findViewById(R.id.rb_new_title_second);
-		rbTitle3 = (RadioButton) view.findViewById(R.id.rb_new_title_third);
-		rbTitle4 = (RadioButton) view.findViewById(R.id.rb_new_title_fouth);
-		btnList.add(rbTitle1);
-		btnList.add(rbTitle2);
-		btnList.add(rbTitle3);
-		btnList.add(rbTitle4);
-		btnList.get(currentFragment).setSelected(true);
-		for(RadioButton btn:btnList){
-			btn.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					switch (v.getId()) {
-					case R.id.rb_new_title_first:
-						clickBtn=0;
-						break;
-					case R.id.rb_new_title_second:
-						clickBtn=1;
-						break;
-					case R.id.rb_new_title_third:
-						clickBtn=2;
-						break;
-					case R.id.rb_new_title_fouth:
-						clickBtn=03;
-						break;
-					}
-					//判断要不要显示别的Fragment
-					if(clickBtn!=currentFragment){
-						Fragment fragment=fragmentList.get(clickBtn);
-						FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-						//判断fragment是否添加过
-						if(!fragment.isAdded()){
-							transaction.add(R.id.ll_news_fragment_contatiner, fragment);
-						}
-						//隐藏以前的fragment
-						transaction.hide(fragmentList.get(currentFragment));
-						//显示新的fragment
-						transaction.show(fragment);
-						transaction.commit();
-						
-					}
-					
-				}
-			});
-		}
+		intitData();
+		x.view().inject(this,view);
+		viewPager.setOffscreenPageLimit(4);
+		// 设置adapter
+		setAdapter();
+		setListeners();
 		return view;
-		
 	}
 
-//	// 初始化view
-//	private void setViews(View view) {
-//		radioGroupNews = (RadioGroup) view.findViewById(R.id.rg_news_title);
-//
-//		popularFragment = new PopularNewsFragment();
-//		addFragment(popularFragment);
-//		showFragment(popularFragment);
-//
-//	}
-//
-//	// 添加fragment
-//	private void addFragment(Fragment fragment) {
-//		FragmentTransaction ft = this.getFragmentManager().beginTransaction();
-//		ft.add(R.id.ll_news_fragment_contatiner, fragment);
-//		ft.commitAllowingStateLoss();
-//	}
-//
-//	// 显示Fragment
-//	private void showFragment(Fragment fragment) {
-//		FragmentTransaction ft = this.getFragmentManager().beginTransaction();
-//		if (popularFragment != null) {
-//			ft.hide(popularFragment);
-//		}
-//		if (spotFragment != null) {
-//			ft.hide(spotFragment);
-//
-//		}
-//		if (techFragment != null) {
-//			ft.hide(techFragment);
-//
-//		}
-//		if (autoFragment != null) {
-//			ft.hide(autoFragment);
-//		}
-//		ft.show(fragment);
-//		ft.commitAllowingStateLoss();
-//	}
-//
-//	private void setListeners() {
-//		radioGroupNews
-//				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-//
-//					public void onCheckedChanged(RadioGroup group, int checkedId) {
-//						switch (checkedId) {
-//						case R.id.rb_new_title_first:
-//							if (popularFragment == null) {
-//								popularFragment = new PopularNewsFragment();
-//								addFragment(popularFragment);
-//								showFragment(popularFragment);
-//							} else {
-//								showFragment(popularFragment);
-//							}
-//							break;
-//						case R.id.rb_new_title_second:
-//							if (spotFragment == null) {
-//								spotFragment = new SpotsNewsFragment();
-//								addFragment(spotFragment);
-//								showFragment(spotFragment);
-//							} else {
-//								showFragment(spotFragment);
-//							}
-//							break;
-//						case R.id.rb_new_title_third:
-//							if (techFragment == null) {
-//								techFragment = new TechNewsFragment();
-//								addFragment(techFragment);
-//								showFragment(techFragment);
-//							} else {
-//								showFragment(techFragment);
-//							}
-//							break;
-//						case R.id.rb_new_title_fouth:
-//							if (autoFragment == null) {
-//								autoFragment = new AutoNewsFragment();
-//								addFragment(autoFragment);
-//								showFragment(autoFragment);
-//							} else {
-//								showFragment(autoFragment);
-//							}
-//							break;
-//						default:
-//							break;
-//
-//						}
-//					}
-//				});
-//	}
+	
+
+	private void setAdapter() {
+		PagerAdapter adapter = new FragmentPagerAdapter(
+				getActivity().getSupportFragmentManager()) {
+
+			@Override
+			public int getCount() {
+				// TODO Auto-generated method stub
+				return fragments1.size();
+			}
+
+			@Override
+			public Fragment getItem(int arg0) {
+				// TODO Auto-generated method stub
+				return fragments1.get(arg0);
+			}
+		};
+		viewPager.setAdapter(adapter);
+	}
+
+	// 初始化数据
+	private void intitData() {
+		
+		fragments1 = new ArrayList<Fragment>();
+		fragments1.add(new PopularNewsFragment());
+		fragments1.add(new SpotsNewsFragment());
+		fragments1.add(new TechNewsFragment());
+		fragments1.add(new AutoNewsFragment());
+	}
+
+	private void setListeners() {
+		radioGroupNews
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					public void onCheckedChanged(RadioGroup group, int checkedId) {
+						switch (checkedId) {
+						case R.id.rb_new_title_first:
+							viewPager.setCurrentItem(0);
+							break;
+						case R.id.rb_new_title_second:
+							viewPager.setCurrentItem(1);
+							break;
+						case R.id.rb_new_title_third:
+							viewPager.setCurrentItem(2);
+							break;
+						case R.id.rb_new_title_fouth:
+							viewPager.setCurrentItem(3);
+							break;
+
+						}
+					}
+				});
+		/**
+		 * vp监听器
+		 */
+		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int i, float v, int i2) {
+//				if (v != 0) { // 当前是第3页
+//					// 设置第三个fragment header的透明度
+//					MineFragment fragment = (MineFragment) fragments1.get(3);
+//					fragment.slide(v);
+//				}
+			}
+
+			public void onPageSelected(int arg0) {
+				switch (arg0) {
+				case 0:
+					rbTitle1.setChecked(true);
+					break;
+				case 1:
+					rbTitle2.setChecked(true);
+					break;
+				case 2:
+					rbTitle3.setChecked(true);
+					break;
+				case 3:
+					rbTitle4.setChecked(true);
+					break;
+
+				}
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		
+
+	}
 }

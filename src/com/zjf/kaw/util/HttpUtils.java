@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import android.util.Log;
+
 /**
  * ·â×°ÁªÍø²Ù×÷
  * 
@@ -31,6 +33,7 @@ public class HttpUtils {
 		String result = null;
 		StringBuffer sbf = new StringBuffer();
 		httpUrl = httpUrl + "?" + httpArg;
+		Log.i("edu", httpUrl);
 
 		try {
 			URL url = new URL(httpUrl);
@@ -46,7 +49,6 @@ public class HttpUtils {
 			String strRead = null;
 			while ((strRead = reader.readLine()) != null) {
 				sbf.append(strRead);
-//				sbf.append("\r\n");
 			}
 			reader.close();
 			result = sbf.toString();
