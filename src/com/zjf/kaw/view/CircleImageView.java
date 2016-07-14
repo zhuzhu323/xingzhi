@@ -1,4 +1,4 @@
-package com.zjf.kaw.ui;
+package com.zjf.kaw.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;

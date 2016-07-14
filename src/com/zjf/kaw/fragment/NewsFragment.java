@@ -6,33 +6,28 @@ import java.util.List;
 import org.xutils.x;
 import org.xutils.view.annotation.ViewInject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.zjf.kaw.R;
-import com.zjf.kaw.adapter.NewsAdapter;
 import com.zjf.kaw.entity.News;
-import com.zjf.kaw.model.NewsModel;
+import com.zjf.kaw.model.INewsModel;
+import com.zjf.kaw.view.NewsView;
 
 public class NewsFragment extends Fragment {
 
 	// private ListView listView;
-	NewsModel model;
+	INewsModel model;
 	@ViewInject(R.id.rg_news_title)
 	private RadioGroup radioGroupNews;
 	@ViewInject(R.id.vp_news_pagers)
@@ -46,15 +41,14 @@ public class NewsFragment extends Fragment {
 	private RadioButton rbTitle3;
 	@ViewInject(R.id.rb_new_title_fouth)
 	private RadioButton rbTitle4;
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+
 		View view = inflater.inflate(R.layout.fragment_news, null);
 		intitData();
-		x.view().inject(this,view);
+		x.view().inject(this, view);
 		viewPager.setOffscreenPageLimit(4);
 		// 设置adapter
 		setAdapter();
@@ -62,11 +56,9 @@ public class NewsFragment extends Fragment {
 		return view;
 	}
 
-	
-
 	private void setAdapter() {
-		PagerAdapter adapter = new FragmentPagerAdapter(
-				getActivity().getSupportFragmentManager()) {
+		PagerAdapter adapter = new FragmentPagerAdapter(getActivity()
+				.getSupportFragmentManager()) {
 
 			@Override
 			public int getCount() {
@@ -85,7 +77,7 @@ public class NewsFragment extends Fragment {
 
 	// 初始化数据
 	private void intitData() {
-		
+
 		fragments1 = new ArrayList<Fragment>();
 		fragments1.add(new PopularNewsFragment());
 		fragments1.add(new SpotsNewsFragment());
@@ -121,11 +113,11 @@ public class NewsFragment extends Fragment {
 		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageScrolled(int i, float v, int i2) {
-//				if (v != 0) { // 当前是第3页
-//					// 设置第三个fragment header的透明度
-//					MineFragment fragment = (MineFragment) fragments1.get(3);
-//					fragment.slide(v);
-//				}
+				// if (v != 0) { // 当前是第3页
+				// // 设置第三个fragment header的透明度
+				// MineFragment fragment = (MineFragment) fragments1.get(3);
+				// fragment.slide(v);
+				// }
 			}
 
 			public void onPageSelected(int arg0) {
@@ -153,7 +145,7 @@ public class NewsFragment extends Fragment {
 
 			}
 		});
-		
 
 	}
+
 }
