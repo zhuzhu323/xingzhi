@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +30,7 @@ import com.zjf.kaw.view.NewsView;
 /**
  * Created by zjf 2016-7-12обнГ1:54:52
  */
-public class PopularNewsFragment extends Fragment implements NewsView {
+public class PopularNewsFragment extends BaseFragment implements NewsView {
 	private NewsAdapter adapter;
 	private ListView newsListView;
 	private List<News> news;

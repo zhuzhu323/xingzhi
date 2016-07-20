@@ -30,7 +30,7 @@ import com.zjf.kaw.view.NewsView;
 /**
  * Created by zjf 2016-7-12обнГ4:06:08
  */
-public class AutoNewsFragment extends Fragment implements NewsView {
+public class AutoNewsFragment extends BaseFragment implements NewsView {
 	private NewsAdapter adapter;
 	private ListView newsListView;
 	private List<News> news;

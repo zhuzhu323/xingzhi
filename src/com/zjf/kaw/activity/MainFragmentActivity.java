@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.zjf.kaw.fragment.MineFragment;
 import com.zjf.kaw.fragment.NewsFragment;
 import com.zjf.kaw.fragment.VideoFragment;
 
-public class MainFragmentActivity extends FragmentActivity {
+public class MainFragmentActivity extends BaseActivity {
 	NewsFragment newsFragment;
 	ArrayList<Fragment> fragmentList = new ArrayList();
 	ArrayList<Button> btnList = new ArrayList();

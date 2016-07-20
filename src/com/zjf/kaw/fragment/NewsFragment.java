@@ -1,151 +1,85 @@
 package com.zjf.kaw.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.xutils.x;
-import org.xutils.view.annotation.ViewInject;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.zjf.kaw.R;
-import com.zjf.kaw.entity.News;
-import com.zjf.kaw.model.INewsModel;
-import com.zjf.kaw.view.NewsView;
+import com.zjf.kaw.ui.PagerTab;
+import com.zjf.kaw.util.UIUtils;
 
-public class NewsFragment extends Fragment {
-
-	// private ListView listView;
-	INewsModel model;
-	@ViewInject(R.id.rg_news_title)
-	private RadioGroup radioGroupNews;
-	@ViewInject(R.id.vp_news_pagers)
-	private ViewPager viewPager;
-	private ArrayList<Fragment> fragments1;
-	@ViewInject(R.id.rb_new_title_first)
-	private RadioButton rbTitle1;
-	@ViewInject(R.id.rb_new_title_second)
-	private RadioButton rbTitle2;
-	@ViewInject(R.id.rb_new_title_third)
-	private RadioButton rbTitle3;
-	@ViewInject(R.id.rb_new_title_fouth)
-	private RadioButton rbTitle4;
+public class NewsFragment extends Fragment  {
+	private PagerTab mPagerTab;
+	private ViewPager mViewPager;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		View view = inflater.inflate(R.layout.fragment_news, null);
-		intitData();
-		x.view().inject(this, view);
-		viewPager.setOffscreenPageLimit(4);
-		// 设置adapter
-		setAdapter();
-		setListeners();
-		return view;
-	}
+		
+		
+		mPagerTab = (PagerTab)view.findViewById(R.id.pager_tab);
+		mViewPager = (ViewPager) view.findViewById(R.id.vp_pager);
 
-	private void setAdapter() {
-		PagerAdapter adapter = new FragmentPagerAdapter(getActivity()
-				.getSupportFragmentManager()) {
+		mViewPager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
+		mPagerTab.setViewPager(mViewPager);
+
+		mPagerTab.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
-			public int getCount() {
-				// TODO Auto-generated method stub
-				return fragments1.size();
+			public void onPageSelected(int position) {
+				BaseFragment fragment = FragmentFactory
+						.createFragment(position);
 			}
 
 			@Override
-			public Fragment getItem(int arg0) {
-				// TODO Auto-generated method stub
-				return fragments1.get(arg0);
-			}
-		};
-		viewPager.setAdapter(adapter);
-	}
-
-	// 初始化数据
-	private void intitData() {
-
-		fragments1 = new ArrayList<Fragment>();
-		fragments1.add(new PopularNewsFragment());
-		fragments1.add(new SpotsNewsFragment());
-		fragments1.add(new TechNewsFragment());
-		fragments1.add(new AutoNewsFragment());
-	}
-
-	private void setListeners() {
-		radioGroupNews
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-					public void onCheckedChanged(RadioGroup group, int checkedId) {
-						switch (checkedId) {
-						case R.id.rb_new_title_first:
-							viewPager.setCurrentItem(0);
-							break;
-						case R.id.rb_new_title_second:
-							viewPager.setCurrentItem(1);
-							break;
-						case R.id.rb_new_title_third:
-							viewPager.setCurrentItem(2);
-							break;
-						case R.id.rb_new_title_fouth:
-							viewPager.setCurrentItem(3);
-							break;
-
-						}
-					}
-				});
-		/**
-		 * vp监听器
-		 */
-		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
-			@Override
-			public void onPageScrolled(int i, float v, int i2) {
-				// if (v != 0) { // 当前是第3页
-				// // 设置第三个fragment header的透明度
-				// MineFragment fragment = (MineFragment) fragments1.get(3);
-				// fragment.slide(v);
-				// }
-			}
-
-			public void onPageSelected(int arg0) {
-				switch (arg0) {
-				case 0:
-					rbTitle1.setChecked(true);
-					break;
-				case 1:
-					rbTitle2.setChecked(true);
-					break;
-				case 2:
-					rbTitle3.setChecked(true);
-					break;
-				case 3:
-					rbTitle4.setChecked(true);
-					break;
-
-				}
-
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
 			}
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
-
 			}
 		});
-
+		
+		return view;
 	}
+	
+	
+	class MyPagerAdapter extends FragmentPagerAdapter {
 
+		private String[] mTabNames;// 页签名称集合
+
+		public MyPagerAdapter(FragmentManager fm) {
+			super(fm);
+			mTabNames = UIUtils.getStringArray(R.array.tab_names);
+			Log.i("212",mTabNames.toString());
+		}
+
+		// 加载每个页签标题
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return mTabNames[position];
+		}
+
+		// 返回Fragment对象,将onCreateView方法的返回view填充给ViewPager
+		// 此方法类似instantiateItem
+		@Override
+		public Fragment getItem(int position) {
+			// 从工厂类中生产Fragment并返回
+			return FragmentFactory.createFragment(position);
+		}
+
+		// 返回item个数
+		@Override
+		public int getCount() {
+			return mTabNames.length;
+		}
+	}
 }

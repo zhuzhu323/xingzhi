@@ -4,5 +4,13 @@
     <string name="app_name">行知</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    
+    <string-array name="tab_names">
+        <item>热点</item>
+        <item>体育</item>
+        <item>科技</item>
+        <item>汽车</item>
+    </string-array>
 
 </resources>

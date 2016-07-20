@@ -3,12 +3,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0000ff" >
+     >
 
-<TextView 
-    android:text="收藏"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:textSize="50sp"/>
+<RelativeLayout
+        android:id="@+id/relativeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shouye_bar_top"
+        android:padding="9dp">
+          <ImageButton
+            android:id="@+id/ib_newsinfo_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="30dp"
+            android:background="@drawable/arrow_back_whit"
+            android:onClick="doClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收藏夹"
+            android:id="@+id/textView"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="编辑"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:id="@+id/btnEdit"
+            android:background="@null"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您还未添加任何收藏\n快去首页浏览吧！"
+        android:id="@+id/tvEmptyCart"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"/>
+
+    <com.zjf.kaw.view.QQListView
+        android:id="@+id/lv_care"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="2dp" />
+
 </RelativeLayout>

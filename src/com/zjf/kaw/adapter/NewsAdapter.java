@@ -14,21 +14,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader.ImageCache;
-import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.bumptech.glide.Glide;
+import com.lidroid.xutils.BitmapUtils;
 import com.zjf.kaw.R;
-import com.zjf.kaw.app.MyApplication;
 import com.zjf.kaw.entity.News;
-import com.zjf.kaw.util.GlobalConsts;
-import com.zjf.kaw.util.ImageLoader;
+import com.zjf.kaw.util.BitmapHelper;
 
 public class NewsAdapter extends BaseAdapter {
 
 	private List<News> news;
 	private LayoutInflater inflater;
 	private Context context;
+	private BitmapUtils mBitmapUtils;
 
 	public NewsAdapter(Context context, List<News> news) {
 		super();
@@ -70,7 +68,7 @@ public class NewsAdapter extends BaseAdapter {
 		}else{
 			holder=(ViewHolder) convertView.getTag();
 		}
-		// ¸øholderÖÐ¿Ø¼þ¸³Öµ
+		// ç»™holderä¸­æŽ§ä»¶èµ‹å€¼
 		News n = getItem(position);
 //		long time=Long.parseLong(n.getTime());
 		long time = System.currentTimeMillis();
@@ -79,7 +77,14 @@ public class NewsAdapter extends BaseAdapter {
 		holder.tvTitle.setText(n.getTitle());
 		holder.tvPdate.setText(sdf.format(date));
 		holder.tvAuthor.setText(n.getAuthor());
-		Glide.with(context).load(n.getImg()).into(holder.ivPic);
+		
+		mBitmapUtils = BitmapHelper.getBitmapUtils();
+		mBitmapUtils.configDefaultLoadingImage(R.drawable.ic_launcher);
+		
+		mBitmapUtils.display(holder.ivPic, n.getImg());
+		
+		
+//		Glide.with(context).load(n.getImg()).into(holder.ivPic);
 
 		return convertView;
 	}
@@ -103,7 +108,6 @@ public class NewsAdapter extends BaseAdapter {
 			return mCache.get(arg0);
 		}
 
-		@Override
 		public void putBitmap(String arg0, Bitmap arg1) {
 			mCache.put(arg0, arg1);
 

@@ -33,7 +33,7 @@ import android.widget.AdapterView.OnItemClickListener;
 /**
 / *Created by zjf 2016-7-12обнГ4:03:32
  */
-public class SpotsNewsFragment extends Fragment implements NewsView {
+public class SpotsNewsFragment extends BaseFragment implements NewsView {
 	private NewsAdapter adapter;
 	private ListView newsListView;
 	private List<News> news;

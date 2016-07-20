@@ -1,69 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="HardcodedText" >
+    android:layout_height="match_parent" >
 
-    <RadioGroup
-        android:id="@+id/rg_news_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/shouye_bar_top"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rb_new_title_first"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="热点"
-            android:textColor="@drawable/tab_newstitle_text_color_selector"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/rb_new_title_second"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="体育"
-            android:textColor="@drawable/tab_newstitle_text_color_selector"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/rb_new_title_third"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="科技"
-            android:textColor="@drawable/tab_newstitle_text_color_selector"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/rb_new_title_fouth"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="汽车"
-            android:textColor="@drawable/tab_newstitle_text_color_selector"
-            android:textSize="14sp" />
-    </RadioGroup>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_news_pagers"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rg_news_title" />
-   
+        android:orientation="vertical" >
 
-</RelativeLayout>
+        <com.zjf.kaw.ui.PagerTab
+            android:id="@+id/pager_tab"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_tab" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.DrawerLayout>
